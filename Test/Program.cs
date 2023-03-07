@@ -5,23 +5,21 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        try { 
-        List<int> sequence = new List<int> { 0, 1};
-        int number = int.Parse(Console.ReadLine());
-        int[] seq = new int[] {0,1 };
+        try {
+            string ex = Console.ReadLine();
+            List<char> list = new List<char>(ex.ToCharArray());
+            string finalString = null;
+            Random rnd = new Random();
 
-        while(sequence.Max() < number)
-        {
-            int next;
-            next = seq[0] + seq[1];
-            sequence.Add(next);
-            seq[0] = seq[1];
-            seq[1] = next;
+           while(list.Count > 0)
+            {
+                int position = rnd.Next(0, list.Count);
+                finalString += list.ElementAt(position);
+                list.RemoveAt(position);
+            }
+            Console.WriteLine(finalString);
         }
-        Console.WriteLine(sequence.Contains(number));
-
-        }
-        catch(Exception e)
+        catch (Exception e)
         {
             Console.WriteLine(e.Message);
         }
